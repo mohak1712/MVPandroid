@@ -9,14 +9,20 @@ import android.support.v7.app.AppCompatActivity;
  * Created by mohak on 13/5/17.
  */
 
-public abstract class BaseActivity extends AppCompatActivity implements BaseMvpView{
+public abstract class BaseActivity extends AppCompatActivity implements BaseMvpView {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void showLoading() {
 
     }
 
+    @Override
+    public void showHiding() {
 
-
+    }
 }

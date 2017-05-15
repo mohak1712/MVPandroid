@@ -11,4 +11,9 @@ package mohak.mvpandroid.Base;
  * that then usually will be implemented by an Activity or Fragment.
  */
 public interface BaseMvpView {
+
+    void showLoading();
+
+    void hideLoading();
+
 }
