@@ -10,15 +10,19 @@ package mohak.mvpandroid.Base;
  * onAttach() and onDetach(). It also handles keeping a reference to the mvpView that
  * can be accessed from the children classes by calling getMvpView().
  */
-public class BasePresenter<V> implements BaseMvpPresenter<V> {
+public class BasePresenter<V extends BaseMvpView> implements BaseMvpPresenter<V> {
+
+    private V mvpView;
 
     @Override
     public void onAttach(V mvpView) {
 
+        this.mvpView = mvpView;
     }
 
     @Override
     public void onDetach() {
 
+        mvpView = null;
     }
 }
