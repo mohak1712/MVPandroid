@@ -1,4 +1,4 @@
-package mohak.mvpandroid.Base;
+package mohak.mvpandroid.ui.Base;
 
 /**
  * Created by mohak on 13/5/17.

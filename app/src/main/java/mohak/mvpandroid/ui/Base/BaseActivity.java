@@ -1,7 +1,6 @@
-package mohak.mvpandroid.Base;
+package mohak.mvpandroid.ui.Base;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
@@ -22,7 +21,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseMvpV
     }
 
     @Override
-    public void showHiding() {
+    public void hideLoading() {
 
     }
 }
