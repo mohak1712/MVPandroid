@@ -21,3 +21,13 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+ext{
+
+    supportLibraryVersion = '25.3.1'
+    dagger2Version = '2.8'
+    retrofitVersion = '2.3.0'
+    picassoVersion = '2.5.2'
+    butterknifeVersion = '8.6.0'
+
+}
