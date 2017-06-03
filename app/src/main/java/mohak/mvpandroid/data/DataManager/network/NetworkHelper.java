@@ -5,4 +5,6 @@ package mohak.mvpandroid.data.DataManager.network;
  */
 
 public interface NetworkHelper {
+
+     void getTvPopularList();
 }
