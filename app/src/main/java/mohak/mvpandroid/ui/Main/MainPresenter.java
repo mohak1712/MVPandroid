@@ -4,19 +4,23 @@ package mohak.mvpandroid.ui.Main;
  * Created by mohak on 13/5/17.
  */
 
-import mohak.mvpandroid.ui.Base.BaseMvpView;
+
+import javax.inject.Inject;
+
+import mohak.mvpandroid.data.DataManager.DataManager;
 import mohak.mvpandroid.ui.Base.BasePresenter;
 
-public class MainPresenter<V extends BaseMvpView> extends BasePresenter<V> implements MainMvpPresenter {
+public class MainPresenter<V extends MainMvpView> extends BasePresenter<V> implements MainMvpPresenter<V> {
 
-    @Override
-    public void onAttach(V mvpView) {
 
-    }
-
-    @Override
-    public void onDetach() {
+    @Inject
+    MainPresenter(DataManager dataManager) {
+        super(dataManager);
 
     }
 
+    @Override
+    public void fragmentAdded() {
+
+    }
 }
