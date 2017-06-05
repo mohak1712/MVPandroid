@@ -3,9 +3,9 @@
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?attr/colorPrimary"
+    android:background="@color/colorPrimary"
     android:minHeight="?attr/actionBarSize"
-    app:title="Popular Movies"
+    app:title="TV Shows"
     app:titleTextColor="@android:color/white">
 
 </android.support.v7.widget.Toolbar>

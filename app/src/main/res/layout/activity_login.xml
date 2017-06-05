@@ -1,101 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_tv_series"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/background_gradient"
-    tools:context="mohak.mvpandroid.ui.Login.LoginActivity">
+    android:layout_height="match_parent">
 
-
-    <android.support.v7.widget.CardView
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/activity_tv_series"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:layout_centerInParent="true"
-        android:layout_margin="40dp"
-        app:cardCornerRadius="15dp">
+        android:layout_height="match_parent"
+        android:background="@drawable/background_gradient"
+        tools:context="mohak.mvpandroid.ui.Login.LoginActivity">
 
-        <RelativeLayout
+
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="400dp"
+            android:layout_centerInParent="true"
+            android:layout_margin="40dp"
+            app:cardCornerRadius="15dp">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:padding="20dp">
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="New Account"
+                        android:textColor="#124070"
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:layout_width="50dp"
+                        android:layout_height="5dp"
+                        android:layout_marginBottom="30dp"
+                        android:background="#124070" />
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="30dp">
+
+                        <EditText
+                            android:id="@+id/email"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:hint="Email"
+                            android:inputType="textEmailAddress"
+                            android:maxLines="1"
+                            android:padding="10dp"
+                            android:textColorHint="#000"
+                            android:textSize="14sp" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="30dp">
+
+                        <EditText
+                            android:id="@+id/password"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:hint="Password"
+                            android:inputType="textPassword"
+                            android:maxLines="1"
+                            android:padding="10dp"
+                            android:textColorHint="#000"
+                            android:textSize="14sp" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <View
+                        android:id="@+id/password_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="4dp"
+                        android:background="@drawable/password_gradient" />
+
+
+                    <TextView
+                        android:id="@+id/password_strength"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="^"
+                        android:textColor="@android:color/holo_red_dark"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/signup"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="New Account"
-                    android:textColor="#124070"
-                    android:textSize="30sp"
+                    android:layout_alignParentBottom="true"
+                    android:background="#55F0BD"
+                    android:gravity="center"
+                    android:padding="15dp"
+                    android:text="Sign Up"
+                    android:textColor="#fff"
                     android:textStyle="bold" />
 
-                <View
-                    android:layout_width="50dp"
-                    android:layout_height="5dp"
-                    android:layout_marginBottom="40dp"
-                    android:background="#124070" />
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
 
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="30dp">
+    </RelativeLayout>
 
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:maxLines="1"
-                        android:padding="10dp"
-                        android:hint="Email"
-                        android:inputType="textEmailAddress"
-                        android:textColorHint="#000"
-                        android:textSize="14sp" />
-
-                </android.support.design.widget.TextInputLayout>
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="invisible"
+        android:id="@+id/progress_bar"/>
 
 
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="30dp">
-
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:maxLines="1"
-                        android:padding="10dp"
-                        android:hint="Password"
-                        android:inputType="textPassword"
-                        android:textColorHint="#000"
-                        android:textSize="14sp" />
-
-                </android.support.design.widget.TextInputLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="4dp"
-                    android:background="@drawable/password_gradient" />
-
-
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:background="#55F0BD"
-                android:gravity="center"
-                android:padding="15dp"
-                android:text="Sign Up"
-                android:id="@+id/signup"
-                android:textColor="#fff"
-                android:textStyle="bold" />
-
-        </RelativeLayout>
-    </android.support.v7.widget.CardView>
-
-</RelativeLayout>
+</FrameLayout>
