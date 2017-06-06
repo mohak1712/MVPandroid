@@ -5,6 +5,10 @@ package mohak.mvpandroid.ui.Base;
  */
 
 
+import javax.inject.Inject;
+
+import mohak.mvpandroid.data.DataManager.DataManager;
+
 /**
  * Base class that implements the Presenter interface and provides a base implementation for
  * onAttach() and onDetach(). It also handles keeping a reference to the mvpView that
@@ -13,6 +17,13 @@ package mohak.mvpandroid.ui.Base;
 public class BasePresenter<V extends BaseMvpView> implements BaseMvpPresenter<V> {
 
     private V mMvpView;
+
+    private DataManager dataManager;
+
+    @Inject
+    public BasePresenter(DataManager dataManager) {
+        this.dataManager = dataManager;
+    }
 
     @Override
     public void onAttach(V mvpView) {
@@ -25,10 +36,17 @@ public class BasePresenter<V extends BaseMvpView> implements BaseMvpPresenter<V>
     }
 
     public boolean isViewAttached() {
-        return mMvpView != null;
+        return mMvpView!=null;
     }
+
 
     public V getMvpView() {
         return mMvpView;
     }
+
+    public DataManager getDataManager() {
+        return dataManager;
+    }
+
+
 }

@@ -4,6 +4,8 @@ package mohak.mvpandroid.ui.Base;
  * Created by mohak on 13/5/17.
  */
 
+import android.support.annotation.IdRes;
+import android.support.annotation.StringRes;
 
 /**
  * Base interface that any class that wants to act as a View in the MVP (Model View Presenter)
@@ -12,8 +14,12 @@ package mohak.mvpandroid.ui.Base;
  */
 public interface BaseMvpView {
 
+    void showError(@StringRes int error_message);
+
     void showLoading();
 
     void hideLoading();
+
+    boolean isNetworkAvailable();
 
 }
