@@ -1,4 +1,4 @@
-package mohak.mvpandroid.ui.TopRatedShows;
+package mohak.mvpandroid.ui;
 
 import android.content.Context;
 import android.view.View;
@@ -9,6 +9,7 @@ import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import mohak.mvpandroid.R;
 import mohak.mvpandroid.Utils.Constants;
 import mohak.mvpandroid.data.Model.TvModel;
@@ -17,28 +18,18 @@ import mohak.mvpandroid.data.Model.TvModel;
  * Created by mohak on 5/6/17.
  */
 
-public class TopRatedShowsViewHolder {
+public class CommonFragmentViewHolder {
 
     @BindView(R.id.poster)
     ImageView imageView;
 
-    public TopRatedShowsViewHolder(View view) {
+    public CommonFragmentViewHolder(View view) {
         ButterKnife.bind(this, view);
     }
 
     public void setUp(Context context, TvModel model) {
 
-        Picasso.with(context).load(Constants.ImgUrl + model.getImgLink()).into(imageView, new Callback() {
-            @Override
-            public void onSuccess() {
-
-            }
-
-            @Override
-            public void onError() {
-
-            }
-        });
+        Picasso.with(context).load(Constants.ImgUrl + model.getImgLink()).into(imageView);
 
     }
 }

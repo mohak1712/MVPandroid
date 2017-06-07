@@ -1,4 +1,4 @@
-package mohak.mvpandroid.ui.TopRatedShows;
+package mohak.mvpandroid.ui;
 
 
 import android.content.Context;
@@ -9,7 +9,6 @@ import android.widget.BaseAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.inject.Inject;
 
 import mohak.mvpandroid.R;
@@ -19,16 +18,17 @@ import mohak.mvpandroid.data.Model.TvModel;
  * Created by mohak on 4/6/17.
  */
 
-public class TopRatedShowsAdapter extends BaseAdapter {
+public class CommonFragmentAdapter extends BaseAdapter {
 
     private List<TvModel> apiData;
+    private ImageClickListener listener;
 
     @Inject
-    public TopRatedShowsAdapter(ArrayList<TvModel> apiData) {
+    public CommonFragmentAdapter(ArrayList<TvModel> apiData) {
         this.apiData = apiData;
     }
 
-    void updateList(ArrayList<TvModel> newData) {
+    public void updateList(ArrayList<TvModel> newData) {
 
         apiData.addAll(newData);
         notifyDataSetChanged();
@@ -49,23 +49,41 @@ public class TopRatedShowsAdapter extends BaseAdapter {
         return i;
     }
 
-    @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
+    public void setImageClickListener(ImageClickListener listener){
+        this.listener = listener;
+    }
 
-        PopularShowsViewHolder holder;
+    @Override
+    public View getView(final int i, View view, ViewGroup viewGroup) {
+
+        final CommonFragmentViewHolder holder;
 
         LayoutInflater inflater = (LayoutInflater)viewGroup.getContext()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         if (view != null) {
-            holder = (PopularShowsViewHolder) view.getTag();
+            holder = (CommonFragmentViewHolder) view.getTag();
         } else {
             view = inflater.inflate(R.layout.single_getmovies, viewGroup, false);
-            holder = new PopularShowsViewHolder(view);
+            holder = new CommonFragmentViewHolder(view);
             view.setTag(holder);
         }
 
         holder.setUp(viewGroup.getContext(),apiData.get(i));
+        holder.imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                listener.imageClicked(i);
+            }
+        });
+
+
         return view;
+    }
+
+    public interface ImageClickListener{
+
+        void imageClicked(int pos);
     }
 }
