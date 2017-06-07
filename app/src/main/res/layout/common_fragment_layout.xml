@@ -23,10 +23,10 @@
     </android.support.v4.widget.SwipeRefreshLayout>
 
     <ProgressBar
-        android:id="@+id/progressBar"
+        android:id="@+id/bottom_progress_bar"
         style="?android:attr/progressBarStyleLarge"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_gravity="bottom|center_horizontal"
         android:visibility="gone">
 

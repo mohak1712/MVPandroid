@@ -2,10 +2,12 @@ package mohak.mvpandroid.ui.PopularShows;
 
 
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
+import android.widget.ProgressBar;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -39,9 +41,6 @@ public class PopularShows extends BaseFragment implements PopularShowsMvpView {
     @Inject
     PopularShowsAdapter adapter;
 
-    @BindView(R.id.grid_view)
-    GridView gridView;
-
     @Inject
     PopularShowsMvpPresenter<PopularShowsMvpView> popularTvShowsMvpPresenter;
 
@@ -49,24 +48,20 @@ public class PopularShows extends BaseFragment implements PopularShowsMvpView {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_popular_tv_shows, container, false);
+        View view =  super.onCreateView(inflater,container,savedInstanceState);
 
         getActivityComponent().injectPopularTvShows(this);
         popularTvShowsMvpPresenter.onAttach(this);
         popularTvShowsMvpPresenter.fetchPopularTvListFromApi("1");
 
-        setUnBinder(ButterKnife.bind(this,view));
         gridView.setAdapter(adapter);
-
 
         return view;
     }
 
-
     @Override
-    public void onDetach() {
-        super.onDetach();
-        mListner = null;
+    public void update(int scroll) {
+        popularTvShowsMvpPresenter.fetchPopularTvListFromApi(""+scroll);
     }
 
 
@@ -74,9 +69,14 @@ public class PopularShows extends BaseFragment implements PopularShowsMvpView {
     public void fetchedList(TvModelResult result) {
 
         TvModel[] model = result.getModels();
-
         ArrayList<TvModel> apiData = new ArrayList<>(Arrays.asList(model));
         adapter.updateList(apiData);
 
+    }
+
+    @Override
+    public void onRefresh() {
+        popularTvShowsMvpPresenter.fetchPopularTvListFromApi("1");
+        swipeRefreshLayout.setRefreshing(false);
     }
 }
