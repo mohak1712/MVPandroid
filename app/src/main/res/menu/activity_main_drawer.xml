@@ -12,7 +12,7 @@
 
         <item
             android:id="@+id/about"
-            android:title="About" />
+            android:title="Rate App" />
 
     </group>
 

@@ -5,4 +5,7 @@
     <color name="colorAccent">#FF5722</color>
     <color name="start_password_gradient">#E811F2</color>
     <color name="end_password_gradient">#4BEEB8</color>
+    <color name="green">#d3d3</color>
+    <color name="black">#000000</color>
+    <color name="background">#303030</color>
 </resources>

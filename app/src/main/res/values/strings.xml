@@ -15,4 +15,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="error_message_internet_unavailable">No internet Connection !</string>
     <string name="something_wrong">Something went wrong</string>
+    <string name="title_activity_detail_show">DetailShowActivity</string>
+    <string name="transition">sharedElement</string>
 </resources>
