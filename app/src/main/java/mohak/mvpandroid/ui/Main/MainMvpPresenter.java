@@ -7,10 +7,13 @@ import mohak.mvpandroid.ui.Base.BaseMvpPresenter;
  */
 
 
-
 public interface MainMvpPresenter<V extends MainMvpView> extends BaseMvpPresenter<V> {
 
-    void fragmentAdded();
+    void getUserDetail();
 
+    void showPopularShowsFrag();
 
+    void showTopRatedFrag();
+
+    void logoutUser();
 }
