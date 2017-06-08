@@ -2,6 +2,9 @@ package mohak.mvpandroid.di.components;
 
 import dagger.Component;
 import mohak.mvpandroid.MvpAndroid;
+import mohak.mvpandroid.data.DataManager.DataManager;
+import mohak.mvpandroid.data.DataManager.network.AppNetworkManager;
+import mohak.mvpandroid.data.DataManager.network.NetworkHelper;
 import mohak.mvpandroid.data.DataManager.network.TvDbService;
 import mohak.mvpandroid.di.modules.ApplicationModule;
 import mohak.mvpandroid.di.modules.NetworkModule;
@@ -18,5 +21,9 @@ public interface ApplicationComponent {
     void inject(MvpAndroid app);
 
     TvDbService getMovieDb();
+
+    DataManager getDataManager();
+
+    AppNetworkManager getManager();
 }
 
