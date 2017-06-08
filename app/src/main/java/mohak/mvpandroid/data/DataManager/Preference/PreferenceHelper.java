@@ -10,5 +10,5 @@ public interface PreferenceHelper {
 
     String getCurrentUserEmail();
 
-
+    void deleteCredentials();
 }

@@ -19,7 +19,7 @@ import mohak.mvpandroid.data.DataManager.Preference.PreferenceHelper;
 import mohak.mvpandroid.data.DataManager.network.NetworkHelper;
 
 /**
- * Created by janisharali on 27/01/17.
+ * Created by mohak on 26/5/17.
  */
 
 public interface DataManager extends PreferenceHelper, NetworkHelper {
