@@ -53,7 +53,7 @@
                             android:id="@+id/email"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:hint="Email"
+                            android:hint="Dummy Email"
                             android:inputType="textEmailAddress"
                             android:maxLines="1"
                             android:padding="10dp"
@@ -92,7 +92,7 @@
                         android:id="@+id/password_strength"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="^"
+                        android:text="!"
                         android:textColor="@android:color/holo_red_dark"
                         android:textSize="18sp"
                         android:textStyle="bold" />
