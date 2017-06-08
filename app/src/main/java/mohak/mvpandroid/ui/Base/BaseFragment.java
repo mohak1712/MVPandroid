@@ -1,8 +1,11 @@
 package mohak.mvpandroid.ui.Base;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.StringRes;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
@@ -10,20 +13,29 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import mohak.mvpandroid.R;
+import mohak.mvpandroid.Utils.Constants;
+import mohak.mvpandroid.data.Model.TvModel;
 import mohak.mvpandroid.di.components.ActivityComponent;
+import mohak.mvpandroid.ui.CommonFragmentAdapter;
+import mohak.mvpandroid.ui.Detail.DetailActivity;
+
+
+/**
+ * Created by mohak on 13/5/17.
+ */
 
 /**
  * A simple {@link Fragment} subclass.
  **/
 
-
-public abstract class BaseFragment extends Fragment implements BaseMvpView, SwipeRefreshLayout.OnRefreshListener {
+public abstract class BaseFragment extends Fragment implements BaseMvpView, SwipeRefreshLayout.OnRefreshListener, CommonFragmentAdapter.ImageClickListener {
 
 
     private OnFragmentInteractionListener mListener;
@@ -172,6 +184,24 @@ public abstract class BaseFragment extends Fragment implements BaseMvpView, Swip
             bottomprogressBar.setVisibility(View.GONE);
         else
             progressBar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void imageClicked(TvModel model, ImageView imageView) {
+
+        Intent intent = new Intent(getActivity(), DetailActivity.class);
+        intent.putExtra(Constants.SHOW_ID, model.getTvId());
+        intent.putExtra(Constants.SHOW_IMG, model.getImgLink());
+
+        if (Build.VERSION.SDK_INT >= 21) {
+
+            ActivityOptionsCompat options = ActivityOptionsCompat.
+                    makeSceneTransitionAnimation(getActivity(), imageView, getString(R.string.transition));
+            startActivity(intent, options.toBundle());
+
+
+        } else
+            startActivity(intent);
     }
 
     public abstract void update(int scroll);
