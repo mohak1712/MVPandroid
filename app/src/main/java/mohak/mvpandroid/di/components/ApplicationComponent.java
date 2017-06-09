@@ -20,10 +20,7 @@ public interface ApplicationComponent {
 
     void inject(MvpAndroid app);
 
-    TvDbService getMovieDb();
-
     DataManager getDataManager();
 
-    AppNetworkManager getManager();
 }
 

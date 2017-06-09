@@ -18,9 +18,9 @@ import mohak.mvpandroid.di.scopes.ActivityScope;
 import mohak.mvpandroid.ui.Detail.DetailMvpPresenter;
 import mohak.mvpandroid.ui.Detail.DetailMvpView;
 import mohak.mvpandroid.ui.Detail.DetailPresenter;
-import mohak.mvpandroid.ui.Login.LoginMvpPresenter;
-import mohak.mvpandroid.ui.Login.LoginMvpView;
-import mohak.mvpandroid.ui.Login.LoginPresenter;
+import mohak.mvpandroid.ui.SignUp.SignUpMvpPresenter;
+import mohak.mvpandroid.ui.SignUp.SignUpMvpView;
+import mohak.mvpandroid.ui.SignUp.SignUpPresenter;
 import mohak.mvpandroid.ui.Main.MainMvpPresenter;
 import mohak.mvpandroid.ui.Main.MainMvpView;
 import mohak.mvpandroid.ui.Main.MainPresenter;
@@ -73,8 +73,8 @@ public class ActivityModule {
 
     @ActivityScope
     @Provides
-    LoginMvpPresenter<LoginMvpView> provideLoginPresenter(LoginPresenter<LoginMvpView> loginPresenter) {
-        return loginPresenter;
+    SignUpMvpPresenter<SignUpMvpView> provideLoginPresenter(SignUpPresenter<SignUpMvpView> signUpPresenter) {
+        return signUpPresenter;
     }
 
     @ActivityScope
@@ -88,7 +88,6 @@ public class ActivityModule {
     DetailMvpPresenter<DetailMvpView> provideDetailPresenter(DetailPresenter<DetailMvpView> detailPresenter) {
         return detailPresenter;
     }
-
 
     @Provides
     CommonFragmentAdapter provideTvShowsAdapter() {
