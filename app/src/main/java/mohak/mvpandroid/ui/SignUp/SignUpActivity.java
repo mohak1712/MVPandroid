@@ -26,10 +26,10 @@ import static android.R.color.holo_red_dark;
  * Created by mohak on 26/5/17.
  */
 
-public class SignUpActivity extends BaseActivity implements LoginMvpView {
+public class SignUpActivity extends BaseActivity implements SignUpMvpView {
 
     @Inject
-    LoginMvpPresenter<LoginMvpView> loginMvpPresenter;
+    SignUpMvpPresenter<SignUpMvpView> loginMvpPresenter;
 
     @BindView(R.id.email)
     EditText email;
@@ -49,7 +49,7 @@ public class SignUpActivity extends BaseActivity implements LoginMvpView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_signup);
 
         getActivityComponent().injectLoginActivity(this);
         ButterKnife.bind(this);

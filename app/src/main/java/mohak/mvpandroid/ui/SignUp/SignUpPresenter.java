@@ -15,9 +15,8 @@ import mohak.mvpandroid.ui.Base.BasePresenter;
 
 public class SignUpPresenter<V extends SignUpMvpView> extends BasePresenter<V> implements SignUpMvpPresenter<V> {
 
-
     @Inject
-    SignUpPresenter(DataManager dataManager) {
+    public SignUpPresenter(DataManager dataManager) {
         super(dataManager);
     }
 
