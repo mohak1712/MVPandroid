@@ -16,32 +16,39 @@ import retrofit2.Response;
 
 public class TopRatedShowsPresenter<V extends TopRatedShowsMvpView> extends BasePresenter<V> implements TopRatedShowsMvpPresenter<V> {
 
+    private boolean bottomProgress = false;
+
+
     @Inject
     public TopRatedShowsPresenter(DataManager dataManager) {
         super(dataManager);
     }
 
     @Override
-    public void fetchPopularTvListFromApi(String pgNo) {
+    public void fetchTopRatedTvListFromApi(String pgNo) {
 
         if (!getMvpView().isNetworkAvailable()){
             getMvpView().showError(R.string.error_message_internet_unavailable);
             return;
         }
 
-        getMvpView().showLoading(R.id.fetch_once_progress);
-        getDataManager().getTvPopularList(pgNo).enqueue(new Callback<TvModelResult>() {
+        if (!pgNo.equals("1"))
+            bottomProgress = true;
+
+        getMvpView().showLoading(bottomProgress);
+        getDataManager().getTvTopRatedList(pgNo).enqueue(new Callback<TvModelResult>() {
             @Override
             public void onResponse(Call<TvModelResult> call, Response<TvModelResult> response) {
-                getMvpView().fetchedList(response.body());
+                getMvpView().fetchedTopRatedList(response.body());
+                getMvpView().hideLoading(bottomProgress);
             }
 
             @Override
             public void onFailure(Call<TvModelResult> call, Throwable t) {
                 getMvpView().showError(R.string.something_wrong);
+                getMvpView().hideLoading(bottomProgress);
             }
         });
 
-        getMvpView().hideLoading(R.id.fetch_once_progress);
     }
 }

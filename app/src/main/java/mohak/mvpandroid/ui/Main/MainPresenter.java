@@ -56,4 +56,9 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V> imple
         getDataManager().deleteCredentials();
         getMvpView().openLoginActivity();
     }
+
+    @Override
+    public void openAboutAct() {
+        getMvpView().openAboutActivity();
+    }
 }

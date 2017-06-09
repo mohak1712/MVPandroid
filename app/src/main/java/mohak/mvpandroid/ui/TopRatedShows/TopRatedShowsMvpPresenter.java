@@ -6,7 +6,7 @@ import mohak.mvpandroid.ui.Base.BaseMvpPresenter;
  * Created by mohak on 4/6/17.
  */
 
-public interface TopRatedShowsMvpPresenter<V extends PopularShowsMvpView> extends BaseMvpPresenter<V> {
+public interface TopRatedShowsMvpPresenter<V extends TopRatedShowsMvpView> extends BaseMvpPresenter<V> {
 
-    void fetchPopularTvListFromApi(String pgNo);
+    void fetchTopRatedTvListFromApi(String pgNo);
 }

@@ -1,30 +1,35 @@
 package mohak.mvpandroid.ui.PopularShows;
 
 
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridView;
-import android.widget.ProgressBar;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import javax.inject.Inject;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import mohak.mvpandroid.R;
+import mohak.mvpandroid.Utils.Constants;
 import mohak.mvpandroid.data.Model.TvModel;
 import mohak.mvpandroid.data.Model.TvModelResult;
 import mohak.mvpandroid.ui.Base.BaseFragment;
+import mohak.mvpandroid.ui.CommonFragmentAdapter;
+import mohak.mvpandroid.ui.Detail.DetailActivity;
 
+/**
+ * Created by mohak on 4/6/17.
+ */
 
 public class PopularShows extends BaseFragment implements PopularShowsMvpView {
 
-    OnFragmentInteractionListener mListner;
 
     public PopularShows() {
         // Required empty public constructor
@@ -39,7 +44,7 @@ public class PopularShows extends BaseFragment implements PopularShowsMvpView {
     }
 
     @Inject
-    PopularShowsAdapter adapter;
+    CommonFragmentAdapter adapter;
 
     @Inject
     PopularShowsMvpPresenter<PopularShowsMvpView> popularTvShowsMvpPresenter;
@@ -48,12 +53,13 @@ public class PopularShows extends BaseFragment implements PopularShowsMvpView {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  super.onCreateView(inflater,container,savedInstanceState);
+        View view = super.onCreateView(inflater, container, savedInstanceState);
 
         getActivityComponent().injectPopularTvShows(this);
         popularTvShowsMvpPresenter.onAttach(this);
         popularTvShowsMvpPresenter.fetchPopularTvListFromApi("1");
 
+        adapter.setImageClickListener(this);
         gridView.setAdapter(adapter);
 
         return view;
@@ -61,7 +67,7 @@ public class PopularShows extends BaseFragment implements PopularShowsMvpView {
 
     @Override
     public void update(int scroll) {
-        popularTvShowsMvpPresenter.fetchPopularTvListFromApi(""+scroll);
+        popularTvShowsMvpPresenter.fetchPopularTvListFromApi("" + scroll);
     }
 
 
@@ -79,4 +85,6 @@ public class PopularShows extends BaseFragment implements PopularShowsMvpView {
         popularTvShowsMvpPresenter.fetchPopularTvListFromApi("1");
         swipeRefreshLayout.setRefreshing(false);
     }
+
+
 }

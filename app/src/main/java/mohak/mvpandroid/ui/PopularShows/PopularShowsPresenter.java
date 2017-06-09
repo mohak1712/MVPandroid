@@ -16,6 +16,8 @@ import retrofit2.Response;
 
 public class PopularShowsPresenter<V extends PopularShowsMvpView> extends BasePresenter<V> implements PopularShowsMvpPresenter<V> {
 
+    private boolean bottomProgress = false;
+
     @Inject
     public PopularShowsPresenter(DataManager dataManager) {
         super(dataManager);
@@ -29,19 +31,25 @@ public class PopularShowsPresenter<V extends PopularShowsMvpView> extends BasePr
             return;
         }
 
-        getMvpView().showLoading(R.id.fetch_once_progress);
+        if (!pgNo.equals("1"))
+            bottomProgress = true;
+
+        getMvpView().showLoading(bottomProgress);
         getDataManager().getTvPopularList(pgNo).enqueue(new Callback<TvModelResult>() {
+
             @Override
             public void onResponse(Call<TvModelResult> call, Response<TvModelResult> response) {
                 getMvpView().fetchedList(response.body());
+                getMvpView().hideLoading(bottomProgress);
+
             }
 
             @Override
             public void onFailure(Call<TvModelResult> call, Throwable t) {
                 getMvpView().showError(R.string.something_wrong);
+                getMvpView().hideLoading(bottomProgress);
             }
         });
 
-        getMvpView().hideLoading(R.id.fetch_once_progress);
     }
 }

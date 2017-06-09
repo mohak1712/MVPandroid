@@ -1,14 +1,18 @@
 package mohak.mvpandroid.ui;
 
 
+import android.app.ActivityOptions;
 import android.content.Context;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.inject.Inject;
 
 import mohak.mvpandroid.R;
@@ -49,7 +53,7 @@ public class CommonFragmentAdapter extends BaseAdapter {
         return i;
     }
 
-    public void setImageClickListener(ImageClickListener listener){
+    public void setImageClickListener(ImageClickListener listener) {
         this.listener = listener;
     }
 
@@ -58,7 +62,7 @@ public class CommonFragmentAdapter extends BaseAdapter {
 
         final CommonFragmentViewHolder holder;
 
-        LayoutInflater inflater = (LayoutInflater)viewGroup.getContext()
+        LayoutInflater inflater = (LayoutInflater) viewGroup.getContext()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         if (view != null) {
@@ -69,12 +73,13 @@ public class CommonFragmentAdapter extends BaseAdapter {
             view.setTag(holder);
         }
 
-        holder.setUp(viewGroup.getContext(),apiData.get(i));
+
+        holder.setUp(viewGroup.getContext(), apiData.get(i));
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                listener.imageClicked(i);
+                listener.imageClicked(apiData.get(i), holder.imageView);
             }
         });
 
@@ -82,8 +87,8 @@ public class CommonFragmentAdapter extends BaseAdapter {
         return view;
     }
 
-    public interface ImageClickListener{
+    public interface ImageClickListener {
 
-        void imageClicked(int pos);
+        void imageClicked(TvModel model, ImageView options);
     }
 }

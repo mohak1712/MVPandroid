@@ -18,4 +18,6 @@ public interface MainMvpView extends BaseMvpView{
     void showTopRatedFrag();
 
     void openLoginActivity();
+
+    void openAboutActivity();
 }

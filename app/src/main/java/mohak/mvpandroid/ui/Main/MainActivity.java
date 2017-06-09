@@ -1,12 +1,10 @@
 package mohak.mvpandroid.ui.Main;
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -21,13 +19,12 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import mohak.mvpandroid.data.DataManager.network.TvDbService;
 import mohak.mvpandroid.di.components.ActivityComponent;
 import mohak.mvpandroid.ui.About;
 import mohak.mvpandroid.ui.Base.BaseActivity;
 import mohak.mvpandroid.R;
 import mohak.mvpandroid.ui.Base.BaseFragment;
-import mohak.mvpandroid.ui.Login.LoginActivity;
+import mohak.mvpandroid.ui.SignUp.SignUpActivity;
 import mohak.mvpandroid.ui.PopularShows.PopularShows;
 import mohak.mvpandroid.ui.TopRatedShows.TopRatedShows;
 
@@ -38,9 +35,6 @@ import mohak.mvpandroid.ui.TopRatedShows.TopRatedShows;
 
 public class MainActivity extends BaseActivity implements MainMvpView, BaseFragment.OnFragmentInteractionListener,
         NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
-
-    @Inject
-    TvDbService tvDbService;
 
     @Inject
     MainMvpPresenter<MainMvpView> mainMvpPresenter;
@@ -144,9 +138,6 @@ public class MainActivity extends BaseActivity implements MainMvpView, BaseFragm
         if (id == R.id.popular) {
             mainMvpPresenter.showPopularShowsFrag();
 
-        } else if (id == R.id.about) {
-
-
         } else if (id == R.id.top_rated) {
             mainMvpPresenter.showTopRatedFrag();
 
@@ -205,7 +196,7 @@ public class MainActivity extends BaseActivity implements MainMvpView, BaseFragm
 
     @Override
     public void openLoginActivity() {
-        startActivity(new Intent(this, LoginActivity.class));
+        startActivity(new Intent(this, SignUpActivity.class));
         finish();
     }
 
@@ -217,11 +208,13 @@ public class MainActivity extends BaseActivity implements MainMvpView, BaseFragm
     }
 
     @OnClick(R.id.about_icon)
-    void openAboutActivity() {
-
-        startActivity(new Intent(this, About.class));
+    void aboutClick(){
+        mainMvpPresenter.openAboutAct();
     }
 
+    public void openAboutActivity() {
+        startActivity(new Intent(this, About.class));
+    }
 
     @Override
     public void showLoading(boolean bottomProgress) {

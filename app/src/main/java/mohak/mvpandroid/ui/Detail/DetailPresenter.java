@@ -27,6 +27,12 @@ public class DetailPresenter<V extends DetailMvpView> extends BasePresenter<V> i
     @Override
     public void getTvShowDetail(int tv_id) {
 
+        if (!getMvpView().isNetworkAvailable()) {
+            getMvpView().showError(R.string.error_message_internet_unavailable);
+            return;
+        }
+
+
         getMvpView().showLoading(false);
 
         getDataManager().getTvShowDetails(tv_id).enqueue(new Callback<TvShowDetail>() {

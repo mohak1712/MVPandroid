@@ -9,5 +9,5 @@ import mohak.mvpandroid.ui.Base.BaseMvpView;
 
 public interface TopRatedShowsMvpView extends BaseMvpView {
 
-     void fetchedList(TvModelResult result);
+     void fetchedTopRatedList(TvModelResult result);
 }

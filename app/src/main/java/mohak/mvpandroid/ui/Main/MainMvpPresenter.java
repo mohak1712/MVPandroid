@@ -16,4 +16,6 @@ public interface MainMvpPresenter<V extends MainMvpView> extends BaseMvpPresente
     void showTopRatedFrag();
 
     void logoutUser();
+
+    void openAboutAct();
 }
