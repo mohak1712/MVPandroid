@@ -1,14 +1,12 @@
 package mohak.mvpandroid.ui.Login;
 
-import android.support.annotation.NonNull;
+import android.os.Handler;
 
 import javax.inject.Inject;
 
-import mohak.mvpandroid.MvpAndroid;
 import mohak.mvpandroid.R;
 import mohak.mvpandroid.Utils.CommonUtils;
 import mohak.mvpandroid.data.DataManager.DataManager;
-import mohak.mvpandroid.ui.Base.BaseMvpView;
 import mohak.mvpandroid.ui.Base.BasePresenter;
 
 /**
@@ -24,7 +22,19 @@ public class LoginPresenter<V extends LoginMvpView> extends BasePresenter<V> imp
     }
 
     @Override
-    public void loginCheck(String email, String password) {
+    public void alreadySignedUpCheck() {
+
+        if (getDataManager().getCurrentUserEmail()!=null)
+            getMvpView().openMainActivity();
+    }
+
+    @Override
+    public void signUpCheck(String email, String password) {
+
+        if (!getMvpView().isNetworkAvailable()) {
+            getMvpView().showError(R.string.error_message_internet_unavailable);
+            return;
+        }
 
         if (email == null || email.isEmpty()) {
             getMvpView().showError(R.string.empty_email_error);
@@ -41,8 +51,18 @@ public class LoginPresenter<V extends LoginMvpView> extends BasePresenter<V> imp
             return;
         }
 
-        getMvpView().showLoading();
+        getMvpView().showLoading(false);
         getDataManager().addCurrentUserEmail(email);
+
+        /*5 second delay just to show the progress bar. This is not required otherwise.*/
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                getMvpView().hideLoading(false);
+                getMvpView().openMainActivity();
+            }
+        }, 3000);
+
 
     }
 

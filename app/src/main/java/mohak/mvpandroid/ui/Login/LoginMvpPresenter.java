@@ -8,6 +8,7 @@ import mohak.mvpandroid.ui.Base.BaseMvpPresenter;
 
 public interface LoginMvpPresenter<V extends LoginMvpView> extends BaseMvpPresenter<V>{
 
-    void loginCheck(String email , String password);
+    void signUpCheck(String email , String password);
 
+    void alreadySignedUpCheck();
 }

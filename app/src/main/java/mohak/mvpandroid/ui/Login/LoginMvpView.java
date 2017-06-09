@@ -9,4 +9,5 @@ import mohak.mvpandroid.ui.Base.BaseMvpView;
 public interface LoginMvpView extends BaseMvpView {
 
     void openMainActivity();
+
 }
