@@ -1,13 +1,19 @@
 package mohak.mvpandroid;
 
 import android.app.Application;
+import android.content.Context;
+import android.widget.Toast;
 
+import javax.inject.Inject;
+
+import mohak.mvpandroid.data.DataManager.DataManager;
 import mohak.mvpandroid.di.components.ApplicationComponent;
-//import mohak.mvpandroid.di.components.DaggerApplicationComponent;
 import mohak.mvpandroid.di.components.DaggerApplicationComponent;
 import mohak.mvpandroid.di.modules.ApplicationModule;
 import mohak.mvpandroid.di.modules.NetworkModule;
-import mohak.mvpandroid.di.scopes.ApplicationScope;
+import mohak.mvpandroid.di.qualifiers.ApplicationContext;
+
+
 
 /**
  * Created by mohak on 19/5/17.
@@ -16,6 +22,10 @@ import mohak.mvpandroid.di.scopes.ApplicationScope;
 public class MvpAndroid extends Application {
 
     private ApplicationComponent mApplicationComponent;
+
+    @Inject
+    @ApplicationContext
+    Context applicationContext;
 
     @Override
     public void onCreate() {
@@ -28,9 +38,12 @@ public class MvpAndroid extends Application {
 
     }
 
-
     public ApplicationComponent getApplicationComponent() {
         return mApplicationComponent;
+    }
+
+    public Context getApplicationContext() {
+        return applicationContext;
     }
 
 }
