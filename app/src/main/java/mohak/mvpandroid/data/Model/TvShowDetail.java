@@ -6,47 +6,45 @@ import android.os.Parcelable;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by mohak on 15/10/16.
+ * Created by mohak on 25/5/17.
  */
+
 public class TvShowDetail implements Parcelable {
 
-    @SerializedName("original_title")
-    private String movieName;
+    @SerializedName("original_name")
+    private String showName;
     @SerializedName("overview")
     private String synopsis;
     @SerializedName("vote_average")
     private float rating;
-    @SerializedName("runtime")
-    private int runtime;
-    @SerializedName("release_date")
-    String releaseDate;
+    @SerializedName("first_air_date")
+    private String airDate;
 
     protected TvShowDetail(Parcel in) {
-        movieName = in.readString();
+        showName = in.readString();
         synopsis = in.readString();
         rating = in.readFloat();
-        runtime = in.readInt();
-        releaseDate = in.readString();
+        airDate = in.readString();
     }
 
-    public static final Creator<movieDetail> CREATOR = new Creator<movieDetail>() {
+    public static final Creator<TvShowDetail> CREATOR = new Creator<TvShowDetail>() {
         @Override
-        public movieDetail createFromParcel(Parcel in) {
-            return new movieDetail(in);
+        public TvShowDetail createFromParcel(Parcel in) {
+            return new TvShowDetail(in);
         }
 
         @Override
-        public movieDetail[] newArray(int size) {
-            return new movieDetail[size];
+        public TvShowDetail[] newArray(int size) {
+            return new TvShowDetail[size];
         }
     };
 
-    public String getReleaseDate() {
-        return releaseDate;
+    public String getAirDate() {
+        return airDate;
     }
 
-    public String getMovieName() {
-        return movieName;
+    public String getShowName() {
+        return showName;
     }
 
     public String getSynopsis() {
@@ -57,10 +55,6 @@ public class TvShowDetail implements Parcelable {
         return rating;
     }
 
-    public int getRuntime() {
-        return runtime;
-    }
-
     @Override
     public int describeContents() {
         return 0;
@@ -68,10 +62,9 @@ public class TvShowDetail implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(movieName);
+        parcel.writeString(showName);
         parcel.writeString(synopsis);
         parcel.writeFloat(rating);
-        parcel.writeInt(runtime);
-        parcel.writeString(releaseDate);
+        parcel.writeString(airDate);
     }
 }
