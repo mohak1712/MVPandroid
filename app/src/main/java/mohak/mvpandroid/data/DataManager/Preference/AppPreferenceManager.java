@@ -23,12 +23,10 @@ import mohak.mvpandroid.di.scopes.ApplicationScope;
 public class AppPreferenceManager implements PreferenceHelper {
 
     private SharedPreferences mPrefs;
-    private Context context;
 
     @Inject
     public AppPreferenceManager(@ApplicationContext Context context, @PrefFile String prefName) {
         mPrefs = context.getSharedPreferences(prefName, Context.MODE_PRIVATE);
-        this.context = context;
     }
 
     @Override
