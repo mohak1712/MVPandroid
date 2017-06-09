@@ -16,9 +16,9 @@ public interface BaseMvpView {
 
     void showError(@StringRes int error_message);
 
-    void showLoading();
+    void showLoading(boolean bottomProgress);
 
-    void hideLoading();
+    void hideLoading(boolean bottomProgress);
 
     boolean isNetworkAvailable();
 
