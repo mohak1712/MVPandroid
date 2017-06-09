@@ -1,4 +1,4 @@
-package mohak.mvpandroid.ui.Login;
+package mohak.mvpandroid.ui.SignUp;
 
 import mohak.mvpandroid.ui.Base.BaseMvpPresenter;
 
@@ -6,7 +6,7 @@ import mohak.mvpandroid.ui.Base.BaseMvpPresenter;
  * Created by mohak on 26/5/17.
  */
 
-public interface LoginMvpPresenter<V extends LoginMvpView> extends BaseMvpPresenter<V>{
+public interface SignUpMvpPresenter<V extends LoginMvpView> extends BaseMvpPresenter<V>{
 
     void signUpCheck(String email , String password);
 

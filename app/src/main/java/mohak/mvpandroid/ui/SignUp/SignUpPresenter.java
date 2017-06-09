@@ -1,4 +1,4 @@
-package mohak.mvpandroid.ui.Login;
+package mohak.mvpandroid.ui.SignUp;
 
 import android.os.Handler;
 
@@ -13,11 +13,11 @@ import mohak.mvpandroid.ui.Base.BasePresenter;
  * Created by mohak on 26/5/17.
  */
 
-public class LoginPresenter<V extends LoginMvpView> extends BasePresenter<V> implements LoginMvpPresenter<V> {
+public class SignUpPresenter<V extends SignUpMvpView> extends BasePresenter<V> implements SignUpMvpPresenter<V> {
 
 
     @Inject
-    LoginPresenter(DataManager dataManager) {
+    SignUpPresenter(DataManager dataManager) {
         super(dataManager);
     }
 

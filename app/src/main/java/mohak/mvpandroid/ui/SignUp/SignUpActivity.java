@@ -1,4 +1,4 @@
-package mohak.mvpandroid.ui.Login;
+package mohak.mvpandroid.ui.SignUp;
 
 
 import android.animation.ObjectAnimator;
@@ -26,7 +26,7 @@ import static android.R.color.holo_red_dark;
  * Created by mohak on 26/5/17.
  */
 
-public class LoginActivity extends BaseActivity implements LoginMvpView {
+public class SignUpActivity extends BaseActivity implements LoginMvpView {
 
     @Inject
     LoginMvpPresenter<LoginMvpView> loginMvpPresenter;
