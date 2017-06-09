@@ -10,10 +10,6 @@
             android:id="@+id/top_rated"
             android:title="Top Rated" />
 
-        <item
-            android:id="@+id/about"
-            android:title="Rate App" />
-
     </group>
 
 </menu>

@@ -17,4 +17,7 @@
     <string name="something_wrong">Something went wrong</string>
     <string name="title_activity_detail_show">DetailShowActivity</string>
     <string name="transition">sharedElement</string>
+    <string name="overview">Sample app to demonstrate MVP ( Model-View-Presenter ) architecture using Dagger 2 for DI</string>
+    <string name="github">Special thanks to Mindorks for their article on MVP -  https://github.com/MindorksOpenSource</string>
+    <string name="todo">TODO - Add RxJava to Retrofit</string>
 </resources>
