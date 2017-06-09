@@ -29,5 +29,7 @@ ext{
     retrofitVersion = '2.3.0'
     picassoVersion = '2.5.2'
     butterknifeVersion = '8.6.0'
-
+    espressoVersion = '2.2.2'
+    junitVersion = '4.12'
+    runnerVersion = '0.5'
 }

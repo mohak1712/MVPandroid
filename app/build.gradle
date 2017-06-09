@@ -10,6 +10,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
@@ -41,4 +42,27 @@ dependencies {
     compile "com.jakewharton:butterknife:$rootProject.ext.butterknifeVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.butterknifeVersion"
 
+    compile "com.android.support:support-v4:$rootProject.ext.supportLibraryVersion"
+
+    compile "junit:junit:$rootProject.ext.junitVersion"
+    androidTestCompile "com.android.support.test:runner:$rootProject.ext.runnerVersion"
+    androidTestCompile "com.android.support.test:rules:$rootProject.ext.runnerVersion"
+
+    compile "com.android.support.test.espresso:espresso-core:$rootProject.ext.espressoVersion"
+    compile "com.android.support.test.espresso:espresso-intents:$rootProject.ext.espressoVersion"
+    compile ("com.android.support.test.espresso:espresso-contrib:$rootProject.ext.espressoVersion"){
+        exclude group: 'com.android.support', module: 'appcompat-v7'
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude group: 'com.android.support', module: 'design'
+        exclude module: 'recyclerview-v7'
+    }
+
+    compile 'org.mockito:mockito-core:1.10.19'
+
+}
+
+configurations.all {
+    resolutionStrategy {
+        force "com.android.support:support-annotations:$rootProject.ext.supportLibraryVersion"
+    }
 }
