@@ -7,6 +7,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import io.reactivex.disposables.CompositeDisposable;
 import mohak.mvpandroid.data.DataManager.AppDataManager;
 import mohak.mvpandroid.data.DataManager.DataManager;
 import mohak.mvpandroid.ui.SignUp.SignUpMvpPresenter;
@@ -33,11 +34,14 @@ public class SignUpTest {
     @Mock
     DataManager mMockDataManager;
 
+    @Mock
+    CompositeDisposable compositeDisposable;
+
     SignUpMvpPresenter<SignUpMvpView> mvpPresenter;
 
     @Before
     public void setUp() throws Exception {
-        mvpPresenter = new SignUpPresenter<>(mMockDataManager);
+        mvpPresenter = new SignUpPresenter<>(mMockDataManager,compositeDisposable);
         mvpPresenter.onAttach(mMockLoginMvpView);
     }
 
