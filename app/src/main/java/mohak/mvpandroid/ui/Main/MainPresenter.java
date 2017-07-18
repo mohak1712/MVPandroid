@@ -4,20 +4,18 @@ package mohak.mvpandroid.ui.Main;
  * Created by mohak on 13/5/17.
  */
 
-
 import javax.inject.Inject;
 
+import io.reactivex.disposables.CompositeDisposable;
 import mohak.mvpandroid.R;
 import mohak.mvpandroid.data.DataManager.DataManager;
 import mohak.mvpandroid.ui.Base.BasePresenter;
 
 public class MainPresenter<V extends MainMvpView> extends BasePresenter<V> implements MainMvpPresenter<V> {
 
-
     @Inject
-    MainPresenter(DataManager dataManager) {
-        super(dataManager);
-
+    public MainPresenter(DataManager dataManager, CompositeDisposable compositeDisposable) {
+        super(dataManager, compositeDisposable);
     }
 
     @Override

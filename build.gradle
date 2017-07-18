@@ -5,7 +5,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.3'
+        classpath 'com.android.tools.build:gradle:2.3.3'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -26,6 +26,7 @@ ext{
 
     supportLibraryVersion = '25.3.1'
     dagger2Version = '2.8'
+    rxjavaVersion='2.1.0'
     retrofitVersion = '2.3.0'
     picassoVersion = '2.5.2'
     butterknifeVersion = '8.6.0'

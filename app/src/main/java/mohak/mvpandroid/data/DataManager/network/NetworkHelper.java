@@ -1,8 +1,9 @@
 package mohak.mvpandroid.data.DataManager.network;
 
+import io.reactivex.Observable;
 import mohak.mvpandroid.data.Model.TvModelResult;
 import mohak.mvpandroid.data.Model.TvShowDetail;
-import retrofit2.Call;
+import retrofit2.Response;
 
 /**
  * Created by mohak on 26/5/17.
@@ -10,9 +11,9 @@ import retrofit2.Call;
 
 public interface NetworkHelper {
 
-     Call<TvModelResult> getTvPopularList(String pageNo);
+     Observable<Response<TvModelResult>> getTvPopularList(String pageNo);
 
-     Call<TvModelResult> getTvTopRatedList(String pageNo);
+     Observable<Response<TvModelResult>> getTvTopRatedList(String pageNo);
 
-    Call<TvShowDetail> getTvShowDetails(int movie_id);
+    Observable<Response<TvShowDetail>> getTvShowDetails(int movie_id);
 }

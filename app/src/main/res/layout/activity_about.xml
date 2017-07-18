@@ -25,14 +25,5 @@
         android:autoLink="all"
         android:textSize="18sp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:autoLink="all"
-        android:padding="20dp"
-        android:textSize="20sp"
-        android:textColor="#d3d3"
-        android:text="@string/todo" />
-
 
 </LinearLayout>

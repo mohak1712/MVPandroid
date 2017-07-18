@@ -4,6 +4,7 @@ import android.os.Handler;
 
 import javax.inject.Inject;
 
+import io.reactivex.disposables.CompositeDisposable;
 import mohak.mvpandroid.R;
 import mohak.mvpandroid.Utils.CommonUtils;
 import mohak.mvpandroid.data.DataManager.DataManager;
@@ -16,8 +17,8 @@ import mohak.mvpandroid.ui.Base.BasePresenter;
 public class SignUpPresenter<V extends SignUpMvpView> extends BasePresenter<V> implements SignUpMvpPresenter<V> {
 
     @Inject
-    public SignUpPresenter(DataManager dataManager) {
-        super(dataManager);
+    public SignUpPresenter(DataManager dataManager, CompositeDisposable compositeDisposable) {
+        super(dataManager, compositeDisposable);
     }
 
     @Override

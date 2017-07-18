@@ -2,6 +2,12 @@ package mohak.mvpandroid.ui.TopRatedShows;
 
 import javax.inject.Inject;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.observers.DisposableObserver;
+import io.reactivex.schedulers.Schedulers;
 import mohak.mvpandroid.R;
 import mohak.mvpandroid.data.DataManager.DataManager;
 import mohak.mvpandroid.data.Model.TvModelResult;
@@ -18,10 +24,9 @@ public class TopRatedShowsPresenter<V extends TopRatedShowsMvpView> extends Base
 
     private boolean bottomProgress = false;
 
-
     @Inject
-    public TopRatedShowsPresenter(DataManager dataManager) {
-        super(dataManager);
+    public TopRatedShowsPresenter(DataManager dataManager, CompositeDisposable compositeDisposable) {
+        super(dataManager, compositeDisposable);
     }
 
     @Override
@@ -36,19 +41,44 @@ public class TopRatedShowsPresenter<V extends TopRatedShowsMvpView> extends Base
             bottomProgress = true;
 
         getMvpView().showLoading(bottomProgress);
-        getDataManager().getTvTopRatedList(pgNo).enqueue(new Callback<TvModelResult>() {
-            @Override
-            public void onResponse(Call<TvModelResult> call, Response<TvModelResult> response) {
-                getMvpView().fetchedTopRatedList(response.body());
-                getMvpView().hideLoading(bottomProgress);
-            }
 
-            @Override
-            public void onFailure(Call<TvModelResult> call, Throwable t) {
-                getMvpView().showError(R.string.something_wrong);
-                getMvpView().hideLoading(bottomProgress);
-            }
-        });
+        Disposable disposable = getDataManager().getTvTopRatedList(pgNo)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<Response<TvModelResult>>() {
+                    @Override
+                    public void onNext(@NonNull Response<TvModelResult> tvModelResultResponse) {
+
+                        switch (tvModelResultResponse.code()){
+
+                            case 200:
+                                getMvpView().fetchedTopRatedList(tvModelResultResponse.body());
+                                getMvpView().hideLoading(bottomProgress);
+                                break;
+
+                            case 401:
+                                getMvpView().showError(R.string.missing_key);
+                                getMvpView().hideLoading(bottomProgress);
+                                break;
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+
+                        getMvpView().showError(R.string.something_wrong);
+                        getMvpView().hideLoading(bottomProgress);
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
+        getCompositeDisposable().add(disposable);
 
     }
 }

@@ -7,6 +7,7 @@ package mohak.mvpandroid.ui.Base;
 
 import javax.inject.Inject;
 
+import io.reactivex.disposables.CompositeDisposable;
 import mohak.mvpandroid.data.DataManager.DataManager;
 
 /**
@@ -17,13 +18,15 @@ import mohak.mvpandroid.data.DataManager.DataManager;
 public class BasePresenter<V extends BaseMvpView> implements BaseMvpPresenter<V> {
 
     private V mMvpView;
-
-    private DataManager dataManager;
+    DataManager dataManager;
+    CompositeDisposable compositeDisposable;
 
     @Inject
-    public BasePresenter(DataManager dataManager) {
+    public BasePresenter(DataManager dataManager, CompositeDisposable compositeDisposable) {
         this.dataManager = dataManager;
+        this.compositeDisposable = compositeDisposable;
     }
+
 
     @Override
     public void onAttach(V mvpView) {
@@ -32,11 +35,12 @@ public class BasePresenter<V extends BaseMvpView> implements BaseMvpPresenter<V>
 
     @Override
     public void onDetach() {
+        compositeDisposable.dispose();
         mMvpView = null;
     }
 
     public boolean isViewAttached() {
-        return mMvpView!=null;
+        return mMvpView != null;
     }
 
 
@@ -48,5 +52,7 @@ public class BasePresenter<V extends BaseMvpView> implements BaseMvpPresenter<V>
         return dataManager;
     }
 
-
+    public CompositeDisposable getCompositeDisposable() {
+        return compositeDisposable;
+    }
 }

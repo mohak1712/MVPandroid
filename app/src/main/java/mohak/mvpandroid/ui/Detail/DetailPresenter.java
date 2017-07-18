@@ -3,8 +3,15 @@ package mohak.mvpandroid.ui.Detail;
 
 import javax.inject.Inject;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.observers.DisposableObserver;
+import io.reactivex.schedulers.Schedulers;
 import mohak.mvpandroid.R;
 import mohak.mvpandroid.data.DataManager.DataManager;
+import mohak.mvpandroid.data.Model.TvModelResult;
 import mohak.mvpandroid.data.Model.TvShowDetail;
 import mohak.mvpandroid.ui.Base.BasePresenter;
 import retrofit2.Call;
@@ -19,9 +26,8 @@ import retrofit2.Response;
 public class DetailPresenter<V extends DetailMvpView> extends BasePresenter<V> implements DetailMvpPresenter<V> {
 
     @Inject
-    DetailPresenter(DataManager dataManager) {
-        super(dataManager);
-
+    public DetailPresenter(DataManager dataManager, CompositeDisposable compositeDisposable) {
+        super(dataManager, compositeDisposable);
     }
 
     @Override
@@ -35,20 +41,43 @@ public class DetailPresenter<V extends DetailMvpView> extends BasePresenter<V> i
 
         getMvpView().showLoading(false);
 
-        getDataManager().getTvShowDetails(tv_id).enqueue(new Callback<TvShowDetail>() {
-            @Override
-            public void onResponse(Call<TvShowDetail> call, Response<TvShowDetail> response) {
+        Disposable disposable = getDataManager().getTvShowDetails(tv_id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<Response<TvShowDetail>>() {
+                    @Override
+                    public void onNext(@NonNull Response<TvShowDetail> tvModelResultResponse) {
 
-                getMvpView().hideLoading(false);
-                getMvpView().TvShowDetails(response.body());
-            }
+                        switch (tvModelResultResponse.code()) {
 
-            @Override
-            public void onFailure(Call<TvShowDetail> call, Throwable t) {
+                            case 200:
+                                getMvpView().hideLoading(false);
+                                getMvpView().TvShowDetails(tvModelResultResponse.body());
+                                break;
 
-                getMvpView().hideLoading(false);
-                getMvpView().showError(R.string.error_message);
-            }
-        });
+                            case 401:
+                                getMvpView().showError(R.string.missing_key);
+                                getMvpView().hideLoading(false);
+                                break;
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+
+                        getMvpView().hideLoading(false);
+                        getMvpView().showError(R.string.error_message);
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
+        getCompositeDisposable().add(disposable);
     }
 }

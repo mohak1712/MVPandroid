@@ -20,4 +20,6 @@
     <string name="overview">Sample app to demonstrate MVP ( Model-View-Presenter ) architecture using Dagger 2 for DI</string>
     <string name="github">Special thanks to Mindorks for their article on MVP -  https://github.com/MindorksOpenSource</string>
     <string name="todo">TODO - Add RxJava to Retrofit</string>
+    <string name="missing_key">Looks like you forgot to add your themoviedb api key in Constants.java</string>
+
 </resources>

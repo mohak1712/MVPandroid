@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import dagger.Module;
 import dagger.Provides;
+import io.reactivex.disposables.CompositeDisposable;
 import mohak.mvpandroid.data.DataManager.Preference.AppPreferenceManager;
 import mohak.mvpandroid.data.DataManager.Preference.PreferenceHelper;
 import mohak.mvpandroid.data.DataManager.network.AppNetworkManager;
@@ -58,19 +59,6 @@ public class ActivityModule {
         return activity;
     }
 
-
-    @ActivityScope
-    @Provides
-    NetworkHelper provideNetworkHelper(AppNetworkManager networkManager) {
-        return networkManager;
-    }
-
-    @ActivityScope
-    @Provides
-    PreferenceHelper providePreferenceHelper(AppPreferenceManager preferenceManager) {
-        return preferenceManager;
-    }
-
     @ActivityScope
     @Provides
     SignUpMvpPresenter<SignUpMvpView> provideLoginPresenter(SignUpPresenter<SignUpMvpView> signUpPresenter) {
@@ -87,6 +75,11 @@ public class ActivityModule {
     @Provides
     DetailMvpPresenter<DetailMvpView> provideDetailPresenter(DetailPresenter<DetailMvpView> detailPresenter) {
         return detailPresenter;
+    }
+
+    @Provides
+    CompositeDisposable provideCompositeDisposable() {
+        return new CompositeDisposable();
     }
 
     @Provides

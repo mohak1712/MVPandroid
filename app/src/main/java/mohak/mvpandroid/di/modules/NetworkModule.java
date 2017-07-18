@@ -1,10 +1,5 @@
 package mohak.mvpandroid.di.modules;
 
-import android.content.Context;
-
-import com.google.gson.Gson;
-import com.squareup.picasso.Picasso;
-
 import dagger.Module;
 import dagger.Provides;
 import mohak.mvpandroid.Utils.Constants;
@@ -12,6 +7,7 @@ import mohak.mvpandroid.data.DataManager.network.TvDbService;
 import mohak.mvpandroid.di.qualifiers.Url;
 import mohak.mvpandroid.di.scopes.ApplicationScope;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
@@ -27,6 +23,7 @@ public class NetworkModule {
         return new Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
     }
 
