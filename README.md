@@ -29,5 +29,3 @@ Add your [themoviedb](https://www.themoviedb.org/) api key to Constants.API_KEY 
 ![screenshot_20170609 233209](https://user-images.githubusercontent.com/12782512/26989243-fd91035e-4d6f-11e7-8726-c81cce8c8116.jpg)
 ![screenshot_20170610 145531](https://user-images.githubusercontent.com/12782512/27008008-0bb3d6ea-4e84-11e7-99c5-6c651481de32.jpg)
 ![screenshot_20170609 233159](https://user-images.githubusercontent.com/12782512/26989244-fd94073e-4d6f-11e7-86eb-060548965e2b.jpg)
-![screenshot_20170609 233235](https://user-images.githubusercontent.com/12782512/26989242-fd614e70-4d6f-11e7-84e8-ff182067e64e.jpg)
-
